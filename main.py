@@ -42,6 +42,6 @@ def create_ticker(text, output_video_path):
 
 if __name__ == "__main__":
     text = input("input text\n")
-    video_path = f"{text}.mp4"
+    video_path = "ticker.mp4"
     create_ticker(text, video_path)
     print("Done")
