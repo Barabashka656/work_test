@@ -9,7 +9,7 @@ from django.http import FileResponse, Http404
 from django.shortcuts import render, HttpResponse
 
 
-def index(request, text: str):
+def get_ticker(request, text: str):
     video_path = os.path.join(BASE_DIR, 'ticker', 'data', 'ticker.mp4')
     if not Requests.objects.filter(name=text).exists():
         request_instance = Requests(name=text)
@@ -23,3 +23,12 @@ def index(request, text: str):
         return response
     
     return Http404("Video file not found")
+
+
+def get_db_requests(request):
+    requests_instances = Requests.objects.all()
+    for request_instance in requests_instances:
+        print(request_instance.name)
+
+    return render(request, 'ticker/requests.html', {'requests_instances': requests_instances})
+    

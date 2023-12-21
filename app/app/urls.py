@@ -17,9 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from ticker.views import index
+from ticker.views import get_ticker, get_db_requests
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('runtext/<str:text>/', index, name='ticker'),
+    path('runtext/<str:text>/', get_ticker, name='ticker'),
+    path('requests', get_db_requests, name='requests'),
 ]

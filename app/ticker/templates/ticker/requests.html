@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Requests</title>
+</head>
+<body>
+    <h1>Requests Instances</h1>
+    <ul>
+        {% for request_instance in requests_instances %}
+            <li>{{ request_instance.name }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

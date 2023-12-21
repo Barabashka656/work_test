@@ -1,3 +1,4 @@
+import os
 import cv2
 import numpy as np
 from PIL import ImageFont, ImageDraw, Image
@@ -6,12 +7,12 @@ from PIL import ImageFont, ImageDraw, Image
 def create_ticker(text, output_video_path):
     duration = 3
     fps = 60
-    font = cv2.FONT_HERSHEY_SIMPLEX
     font_size = 32
     frame_width = 100
     frame_height = 100
-
+    font = cv2.FONT_HERSHEY_SIMPLEX
     fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+    
     out = cv2.VideoWriter(
         output_video_path,
         fourcc,
@@ -25,8 +26,8 @@ def create_ticker(text, output_video_path):
         image = np.zeros((frame_height, frame_width, 3), dtype=np.uint8)
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         pil_image = Image.fromarray(image)
-
-        font = ImageFont.truetype("console_ticker/my_fonts/ARIAL.TTF", font_size)
+        font_path = os.path.join("console_ticker", "my_fonts", "ARIAL.TTF")
+        font = ImageFont.truetype(font_path, font_size)
         draw = ImageDraw.Draw(pil_image)
         text_width = draw.textlength(text, font=font)
 
@@ -42,6 +43,6 @@ def create_ticker(text, output_video_path):
 
 if __name__ == "__main__":
     text = input("input text\n")
-    video_path = "console_ticker/ticker.mp4"
+    video_path = os.path.join("console_ticker", "ticker.mp4")
     create_ticker(text, video_path)
     print("Done")
