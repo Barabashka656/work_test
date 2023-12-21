@@ -26,7 +26,7 @@ def create_ticker(text, output_video_path):
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         pil_image = Image.fromarray(image)
 
-        font = ImageFont.truetype("my_fonts/ARIAL.TTF", font_size)
+        font = ImageFont.truetype("console_ticker/my_fonts/ARIAL.TTF", font_size)
         draw = ImageDraw.Draw(pil_image)
         text_width = draw.textlength(text, font=font)
 
@@ -42,6 +42,6 @@ def create_ticker(text, output_video_path):
 
 if __name__ == "__main__":
     text = input("input text\n")
-    video_path = "ticker.mp4"
+    video_path = "console_ticker/ticker.mp4"
     create_ticker(text, video_path)
     print("Done")
