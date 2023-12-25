@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: .
+    container_name: app
+    restart: always
+    volumes:
+      - db_data:/var/lib/docker/data
+    command: sh -c "python app/manage.py runserver 0.0.0.0:8000"
+    ports: 
+      - 8000:8000
+   
+volumes:
+  db_data:
